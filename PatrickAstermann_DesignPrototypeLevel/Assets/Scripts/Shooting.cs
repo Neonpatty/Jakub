@@ -15,11 +15,14 @@ public class Shooting : MonoBehaviour
     public AudioSource missHit; // audio source for when shot misses
     public GameObject pHit; //object that the raycast hits
     public RaycastHit hit; //Information from the raycast
+    public AudioSource aS; // Reference to Audio Source in Engine
+
 
     private float nextTimeFire = 0f; //locked variable for fire rate
 
     //REFS
     public PauseMenu pM; //reference to the Pause Menu Script
+    public SoundManager sM; //reference to Sound Manager Script
 
     //if the game is not paused and last time fired is 0 will fire a raycast and play audio for gunshot
     void Update()
@@ -49,7 +52,9 @@ public class Shooting : MonoBehaviour
             //if the raycast hits an object with layer 9 if will play a audio cue and send a message to another script to fire that off
             if (hit.transform.gameObject.layer == 9)
             {
-                shotHit.Play();
+                aS.clip = sM.targetHit[Random.Range(0, sM.targetHit.Length)];
+                aS.Play();
+                //shotHit.Play();
                 hit.transform.SendMessage("HitByRay");
             }
             else if(hit.transform.gameObject.layer == 12)
@@ -60,6 +65,8 @@ public class Shooting : MonoBehaviour
             //if the raycast hits an object with layer 10 it will send a message to another script to fire that off
             else if (hit.transform.gameObject.layer == 10)
             {
+                aS.clip = sM.startBell[0];
+                aS.Play();
                 hit.transform.SendMessage("StartGameNow");
             }
             //if it hits any other object it will play an miss audio cue
