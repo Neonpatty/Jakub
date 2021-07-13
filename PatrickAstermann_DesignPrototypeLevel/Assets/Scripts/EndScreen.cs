@@ -14,10 +14,16 @@ public class EndScreen : MonoBehaviour
 
     //REFS
     public GivePoints gP; //reference to GivePoints script
+   
+    public SoundManager sM;
+    public AudioSource aS;
+
 
     //will activate end screen GUI , deactivate all othe GUI, display the players score and unlock mouse pointer
     public void EndGame()
     {
+        aS.clip = sM.gameOverSfx;
+        aS.Play();
         endGameUi.SetActive(true);
         mainGui.SetActive(false);
         fpsDot.SetActive(false);

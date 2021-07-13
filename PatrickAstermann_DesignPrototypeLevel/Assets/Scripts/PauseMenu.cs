@@ -12,11 +12,17 @@ public class PauseMenu : MonoBehaviour
     public GameObject menu;
     public GameObject optionsMenu;
 
+    //REFS
+    public SoundManager sM;
+    public AudioSource aS;
+
     //if key is hit will open pause menu, if escape hit again will return to game
     void Update()
     {
         if (Input.GetKeyDown(pKey))
         {
+            aS.clip = sM.pauseMenuSfx;
+            aS.Play();
             if (gameIsPaused)
             {
                 Resume();
