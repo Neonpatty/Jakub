@@ -44,7 +44,7 @@ public class Timer : MonoBehaviour
                 eS.EndGame();
             }
         }
-        else 
+        else
         {
             aS.clip = sM.beforePressStartButtonSfx;
             aS.Play();
@@ -55,7 +55,7 @@ public class Timer : MonoBehaviour
     void DisplayTimer(float timeToDisplay)
     {
         timeToDisplay += 1;
-        
+
         float mintues = Mathf.FloorToInt(timeToDisplay / 60); //takes the time and converts it to minutes
         float seconds = Mathf.FloorToInt(timeToDisplay % 60); //takes the time and converts it to seconds
 
