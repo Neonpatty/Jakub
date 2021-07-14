@@ -14,8 +14,7 @@ public class Shooting : MonoBehaviour
     public RaycastHit hit; //Information from the raycast
     public AudioSource bS; // Audio Source from the booth
     public AudioSource pS;  // Audio Source from the Player
-    public AudioSource bR; //Audio Source for The Gold Target Bell Ring
-    public AudioSource gameMusic; // Audio Source for the Start Bell & Game Music
+    public AudioSource bR; //Audio Source for The Bell Ring
 
     private float nextTimeFire = 0f; //locked variable for fire rate
 
@@ -72,7 +71,8 @@ public class Shooting : MonoBehaviour
             //if the raycast hits an object with layer 10 it will send a message to another script to fire that off
             else if (hit.transform.gameObject.layer == 10)
             {
-                gameMusic.Play();
+                bS.clip = sM.startBell[0];
+                bS.Play();
                 hit.transform.SendMessage("StartGameNow");
             }
             else if (hit.transform.gameObject.layer == 11)
