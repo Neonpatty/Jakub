@@ -13,6 +13,9 @@ public class Timer : MonoBehaviour
     //REFS
     public EndScreen eS; //reference to the End Screen Script
     public AnimationPlay aP; //reference to the Animation Play Script
+                             //REFS
+    public SoundManager sM;
+    public AudioSource aS;
 
     //will change timer running to true and fire off function in Animation Play script
     public void StartGameNow()
@@ -40,6 +43,11 @@ public class Timer : MonoBehaviour
                 timerRunning = false;
                 eS.EndGame();
             }
+        }
+        else 
+        {
+            aS.clip = sM.beforePressStartButtonSfx;
+            aS.Play();
         }
     }
 

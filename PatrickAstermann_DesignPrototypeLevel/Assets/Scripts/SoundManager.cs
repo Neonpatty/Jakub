@@ -11,9 +11,10 @@ public class SoundManager : MonoBehaviour
     public AudioClip [] startBell; // Sound played when start button is hit
 
     //Joel's Added Sounds
-    //Targets Hit
+    //Pause
     public AudioClip pauseMenuSfx;
-    //Targets Hit
+    //Game Over
     public AudioClip gameOverSfx;
-
+    //Before Start
+    public AudioClip beforePressStartButtonSfx;
 }
