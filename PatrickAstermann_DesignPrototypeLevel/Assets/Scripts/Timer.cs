@@ -44,11 +44,7 @@ public class Timer : MonoBehaviour
                 eS.EndGame();
             }
         }
-        else
-        {
-            aS.clip = sM.beforePressStartButtonSfx;
-            aS.Play();
-        }
+      
     }
 
     //will take time and convert it  minutes, seconds and to text
