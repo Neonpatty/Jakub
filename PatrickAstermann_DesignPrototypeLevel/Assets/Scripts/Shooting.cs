@@ -10,11 +10,13 @@ public class Shooting : MonoBehaviour
     public Camera fpsCam; //the charaters FPS camera
     public AudioSource gunShot; // audio source for gun fire
     public AudioSource gunCock; // audio source for gun reload
+    public AudioSource shotHit; // audio source for when shot hits
+    public AudioSource shotN; //auido source for when you hit a - target
+    public AudioSource missHit; // audio source for when shot misses
     public GameObject pHit; //object that the raycast hits
     public RaycastHit hit; //Information from the raycast
-    public AudioSource bS; // Audio Source from the booth
-    public AudioSource pS;  // Audio Source from the Player
-    public AudioSource bR; //Audio Source for The Bell Ring
+    public AudioSource aS; // Reference to Audio Source in Engine
+
 
     private float nextTimeFire = 0f; //locked variable for fire rate
 
@@ -50,40 +52,27 @@ public class Shooting : MonoBehaviour
             //if the raycast hits an object with layer 9 if will play a audio cue and send a message to another script to fire that off
             if (hit.transform.gameObject.layer == 9)
             {
-                bS.clip = sM.targetHit[Random.Range(0, sM.targetHit.Length)];
-                bS.Play();
-                hit.transform.SendMessage("HitByRay");
-            }
-            else if (hit.transform.gameObject.layer == 13)
-            {
-                bS.clip = sM.targetHit[Random.Range(0, sM.targetHit.Length)];
-                bR.clip = sM.goldBellRing;
-                bR.PlayDelayed(0.5f);
-                bS.Play();
+                aS.clip = sM.targetHit[Random.Range(0, sM.targetHit.Length)];
+                aS.Play();
+                //shotHit.Play();
                 hit.transform.SendMessage("HitByRay");
             }
             else if(hit.transform.gameObject.layer == 12)
             {
-                bS.clip = sM.negativeHit;
-                bS.Play();
+                shotN.Play();
                 hit.transform.SendMessage("HitByRay");
             }
             //if the raycast hits an object with layer 10 it will send a message to another script to fire that off
             else if (hit.transform.gameObject.layer == 10)
             {
-                bS.clip = sM.startBell[0];
-                bS.Play();
+                aS.clip = sM.startBell[0];
+                aS.Play();
                 hit.transform.SendMessage("StartGameNow");
             }
-            else if (hit.transform.gameObject.layer == 11)
+            //if it hits any other object it will play an miss audio cue
+            else
             {
-                bS.clip = sM.boothHit[Random.Range(0, sM.boothHit.Length)];
-                bS.Play();
-            }
-            else if (hit.transform.gameObject.layer == 8)
-            {
-                bS.clip = sM.groundHit[Random.Range(0, sM.groundHit.Length)];
-                bS.Play();
+                missHit.Play();
             }
 
             //everytime a raycast hits an object it will create an particle effect out from the point of impact the destory the object 2 seconds later

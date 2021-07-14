@@ -7,18 +7,6 @@ public class SoundManager : MonoBehaviour
     //Targets Hit
     public AudioClip[] targetHit;
 
-    //Gold Target Hit
-    public AudioClip goldBellRing;
-
-    //Ground Hit
-    public AudioClip[] groundHit;
-
-    //Booth Hit
-    public AudioClip[] boothHit;
-
-    //Negative Shot
-    public AudioClip negativeHit;
-
     //Felix's added sound
     public AudioClip [] startBell; // Sound played when start button is hit
 
